@@ -1,0 +1,21 @@
+@import './variables';
+@import './dynamic-theme.css';
+@import '@/components/navbar/style.scss';
+@import '@/components/modals/notification/style.scss';
+@import '@/components/modals/authentication/style.scss';
+@import '@/components/modals/fund-wallet-modal/style.scss';
+// @import '@/components/modals/invite-friends/style.scss';
+@import '@/components/markets/style.scss';
+
+@import '@/components/event/style.scss';
+@import '@/components/wallet/style.scss';
+@import '@/components/profile/style.scss';
+
+@import '@/components/cards/market-card/style.scss';
+@import '@/components/cards/trade-widget/style.scss';
+@import '@/components/cards/order-book/style.scss';
+@import '@/components/cards/outcome-list/style.scss';
+@import '@/components/cards/graph-widget/style.scss';
+
+@import '@/components/wager/style.scss';
+@import '@/components/wager/live-bets/style.scss';

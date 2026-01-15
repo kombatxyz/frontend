@@ -9,9 +9,21 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@dynamic-labs/ethereum": "^4.52.5",
+    "@dynamic-labs/sdk-react-core": "^4.52.5",
+    "@dynamic-labs/wagmi-connector": "^4.52.5",
+    "@reduxjs/toolkit": "^2.11.2",
+    "@tanstack/react-query": "^5.90.16",
+    "@types/qrcode.react": "^3.0.0",
     "next": "16.1.0",
+    "qrcode.react": "^4.2.0",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "react-redux": "^9.2.0",
+    "recharts": "^3.6.0",
+    "redux": "^5.0.1",
+    "viem": "^2.44.1",
+    "wagmi": "^3.3.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -20,6 +32,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.0",
+    "sass": "^1.97.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

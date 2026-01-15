@@ -1,0 +1,481 @@
+.market-card {
+  padding: 5px;
+  width: 100%;
+  max-width: 322px;
+  height: 299px;
+  display: flex;
+  flex-direction: column;
+  //   justify-content: space-between;
+  position: relative;
+  transition: all 0.3s ease;
+  background-image: url("data:image/svg+xml,%3Csvg width='322' height='299' viewBox='0 0 322 299' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_250_2)'%3E%3CforeignObject x='0' y='0' width='321.05' height='299'%3E%3Cdiv xmlns='http://www.w3.org/1999/xhtml' style='backdrop-filter:blur(2.39px);clip-path:url(%23bgblur_1_250_2_clip_path);height:100%25;width:100%25'%3E%3C/div%3E%3C/foreignObject%3E%3Cg data-figma-bg-blur-radius='4.78206'%3E%3Cg filter='url(%23filter0_i_250_2)'%3E%3Cpath d='M0 21.1681C0 9.47731 9.4773 0 21.1681 0H299.882C311.573 0 321.05 9.4773 321.05 21.1681V254.358C321.05 257.603 320.304 260.804 318.87 263.714L307.303 287.188C303.74 294.42 296.377 299 288.315 299H21.1681C9.47729 299 0 289.523 0 277.832V21.1681Z' fill='%230E1015'/%3E%3C/g%3E%3Cpath d='M21.168 0.597656H299.882C311.242 0.597656 320.452 9.80734 320.452 21.168V254.358C320.452 257.511 319.728 260.622 318.334 263.45L306.768 286.924C303.305 293.952 296.15 298.402 288.315 298.402H21.168C9.80739 298.402 0.597755 289.193 0.597656 277.832V21.168C0.597754 9.8074 9.8074 0.59775 21.168 0.597656Z' stroke='white' stroke-opacity='0.1' stroke-width='1.19552'/%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_i_250_2' x='0' y='0' width='321.05' height='299' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='BackgroundImageFix' result='shape'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset/%3E%3CfeGaussianBlur stdDeviation='7.05605'/%3E%3CfeComposite in2='hardAlpha' operator='arithmetic' k2='-1' k3='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.1 0'/%3E%3CfeBlend mode='normal' in2='shape' result='effect1_innerShadow_250_2'/%3E%3C/filter%3E%3CclipPath id='bgblur_1_250_2_clip_path' transform='translate(0 0)'%3E%3Cpath d='M0 21.1681C0 9.47731 9.4773 0 21.1681 0H299.882C311.573 0 321.05 9.4773 321.05 21.1681V254.358C321.05 257.603 320.304 260.804 318.87 263.714L307.303 287.188C303.74 294.42 296.377 299 288.315 299H21.1681C9.47729 299 0 289.523 0 277.832V21.1681Z'/%3E%3C/clipPath%3E%3CclipPath id='clip0_250_2'%3E%3Crect width='321.05' height='299' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  .market-card-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100px;
+    background: #191c22;
+    border: 1.19552px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    position: relative;
+    padding: 16px 16px;
+    padding-bottom: 12px;
+    overflow: hidden;
+
+    .header-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+
+      .team-info {
+        flex-basis: 45%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .team-name {
+          font-family: 'TuskerGrotesk-Medium-5500';
+          font-size: 16px;
+          color: #ffffff;
+        }
+      }
+
+      .team-info-home {
+        justify-content: flex-end;
+
+        .team-name {
+          text-align: right;
+        }
+      }
+
+      .team-logo {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+      }
+      .vs {
+        flex-basis: 10%;
+        color: #ffffff;
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+    .title {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+
+      .market-image {
+        width: 28px;
+        height: 28px;
+        background: #d9d9d9;
+        border-radius: 5px;
+        flex-shrink: 0;
+        object-fit: cover;
+      }
+
+      .market-card-title {
+        font-family: 'TuskerGrotesk-Semibold';
+        font-size: 16px;
+        color: #ffffff;
+      }
+    }
+
+    .market-card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      width: 100%;
+
+      .time-remaining {
+        color: #ff9500;
+        font-weight: 500;
+      }
+
+      .meta-right {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+
+        .volume {
+          color: rgba(255, 255, 255, 0.6);
+        }
+
+        .bookmark-btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+.market-card-content {
+  margin: 1rem 0;
+}
+
+.market-card-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 163px;
+  overflow: auto;
+  padding: 0 24px;
+  scrollbar-width: none;
+
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .market-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 1rem;
+    padding-right: 10px;
+    max-height: 34px;
+    border-radius: 8px;
+    border: 0.8px solid transparent;
+    cursor: pointer;
+    position: relative;
+    transition: width 0.5s linear;
+
+    .option-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: #171a21;
+      transition: width 0.5s linear;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      z-index: 0;
+    }
+
+    &:hover {
+      border: 0.882006px solid rgba(255, 255, 255, 0.24);
+      border-radius: 8px;
+      transition: width 0.5s linear;
+
+      .option-percentage {
+        opacity: 0;
+      }
+
+      .hover-badges {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    .option-name {
+      font-family: 'Blanc-Groove-Regular';
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .option-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-width: 80px;
+      justify-content: flex-end;
+      z-index: 1;
+    }
+
+    .option-percentage {
+      font-family: 'Blanc-Groove-Medium';
+      color: #ffffff;
+      font-size: 13px;
+      transition: opacity 0.2s ease;
+    }
+
+    .hover-badges {
+      position: absolute;
+      right: 0;
+      display: flex;
+      gap: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.2s ease;
+
+      .badge {
+        padding: 0px 16px;
+        height: 22px;
+        border-radius: 4px;
+        font-family: 'Blanc-Groove-Medium';
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.badge-yes {
+          background: #0c1a17;
+          color: #21d148;
+        }
+
+        &.badge-no {
+          background: #261c17;
+          color: #fc8c26;
+        }
+      }
+    }
+  }
+}
+
+.market-card-binary {
+  .binary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-bottom: 12px;
+
+    .binary-name {
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .binary-badges {
+      display: flex;
+      gap: 8px;
+    }
+
+    .badge {
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+
+      &.badge-yes {
+        background: #0c1a17;
+        color: #21d148;
+      }
+
+      &.badge-no {
+        background: #261c17;
+        color: #fc8c26;
+      }
+    }
+  }
+}
+
+// Binary Buttons Style
+.market-card-binary-buttons {
+  display: flex;
+  flex-direction: column;
+  margin: 0rem 1rem;
+  height: 100%;
+  height: 163px;
+
+  .percentage-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 0.8px solid rgba(255, 255, 255, 0.24);
+    border-radius: 8px;
+    height: 34px;
+    margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: width 0.5s linear;
+
+    .option-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: #171a21;
+      transition: width 0.5s linear;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      z-index: 0;
+      transition: width 0.5s linear;
+    }
+    .percentage-value {
+      color: #ffffff;
+      font-family: 'Blanc-Groove-Medium';
+      font-size: 12px;
+      position: relative;
+      z-index: 1;
+
+      .text {
+        color: #7f7f7f;
+      }
+    }
+  }
+
+  .binary-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+    margin-bottom: 0.5rem;
+
+    .btn {
+      flex: 1;
+      padding: 0 16px;
+      height: 34px;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Blanc-Groove-Medium';
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &.btn-yes {
+        background: #0c1a17;
+        color: #21d148;
+
+        &:hover {
+          background: rgba(34, 197, 94, 0.25);
+        }
+      }
+
+      &.btn-no {
+        background: #251919;
+        color: #c1272d;
+
+        &:hover {
+          background: rgba(239, 68, 68, 0.25);
+        }
+      }
+    }
+  }
+}
+
+.match-outcome {
+  display: flex;
+  flex-direction: column;
+  //   margin: 0rem 1rem;
+  height: 100%;
+  height: 163px;
+
+  .match-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 16px;
+    position: relative;
+
+    .match-option-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0px 1rem;
+      // padding-bottom: 10px;
+      height: 34px;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+
+      .option-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background: #171a21;
+        transition: width 0.5s linear;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        z-index: 0;
+      }
+      .match-option {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+
+        .option-name {
+          color: rgba(255, 255, 255, 0.8);
+          font-family: 'Blanc-Groove-Regular';
+          font-size: 12px;
+        }
+        .option-percentage {
+          position: relative;
+          display: flex;
+          align-items: center;
+          min-width: 80px;
+          justify-content: flex-end;
+          z-index: 1;
+          font-family: 'Blanc-Groove-Medium';
+          color: #ffffff;
+          font-size: 13px;
+          transition: opacity 0.2s ease;
+        }
+      }
+    }
+  }
+  .match-buttons {
+    margin-top: auto;
+    display: flex;
+    gap: 8px;
+    padding: 0 16px;
+    padding-bottom: 10px;
+
+    .btn {
+      padding: 0 16px;
+      height: 34px;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Blanc-Groove-Medium';
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &.btn-home {
+        background: #0c1a17;
+        color: #21d148;
+        flex-basis: 44%;
+        &:hover {
+          background: #147d48;
+        }
+      }
+      &.btn-draw {
+        background: #1d1d1d;
+        color: #c0c0c0;
+        &:hover {
+          background: #3a3a3a;
+        }
+      }
+      &.btn-away {
+        background: #251919;
+        color: #c1272d;
+        flex-basis: 44%;
+        &:hover {
+          background: #7d2a2a;
+        }
+      }
+    }
+  }
+}
+// Responsive
+@media (max-width: 768px) {
+  .market-card {
+    width: 100%;
+    max-width: 380px;
+  }
+}

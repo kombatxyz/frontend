@@ -1,0 +1,141 @@
+.versus-widget {
+  background-image: url('../../../assets/images/sport-widget.svg');
+  background-repeat: no-repeat;
+  min-height: 284px;
+  max-height: 284px;
+  border-radius: 16px;
+  // padding: 32px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  margin-top: 0rem;
+
+  .team-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    z-index: 2;
+    flex: 1;
+
+    .team-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      object-fit: contain;
+      // background: rgba(255, 255, 255, 0.05);
+      padding: 4px;
+    }
+
+    .team-name {
+      color: #ffffff;
+      font-size: 18px;
+      text-transform: capitalize;
+      text-align: center;
+      font-family: 'TuskerGrotesk-Medium-5500';
+    }
+  }
+
+  .center-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    z-index: 2;
+    margin: auto 20px;
+    margin-top: 112px;
+
+    .vs-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stats {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Space Mono', monospace; // or system monospace
+      font-size: 14px;
+      white-space: nowrap;
+
+      .timer {
+        color: #f47010;
+        font-family: monospace;
+      }
+
+      .volume {
+        color: rgba(255, 255, 255, 0.6);
+        font-family: monospace;
+        span {
+          color: #ffffff;
+        }
+      }
+    }
+
+    .copy-link-btn {
+      width: 56px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+        stroke: #ffffff;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 24px;
+
+    .team-section {
+      flex-direction: row;
+      gap: 16px;
+      width: 100%;
+      justify-content: flex-start;
+
+      &.right {
+        justify-content: flex-end;
+        flex-direction: row-reverse;
+      }
+
+      .team-logo {
+        width: 48px;
+        height: 48px;
+      }
+
+      .team-name {
+        font-size: 16px;
+      }
+    }
+
+    .center-section {
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .vs-icon {
+        display: none; // Hide VS icon on mobile if space is tight
+      }
+    }
+  }
+}

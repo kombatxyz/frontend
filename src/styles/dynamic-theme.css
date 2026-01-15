@@ -1,0 +1,31 @@
+:root {
+  /* Font Family */
+  --dynamic-font-family-primary: 'ABC-Diatype', sans-serif;
+
+  /* Primary Brand Color */
+  --dynamic-brand-primary-color: #4f46e5;
+  --dynamic-brand-primary-color-hover: #4338ca;
+
+  /* Background Colors (Dark Mode) */
+  --dynamic-base-1: #080b11; /* Matching body background */
+  --dynamic-base-2: #13151b; /* Matching card background */
+  --dynamic-base-3: #1f2937; /* Matching deeper nesting/gray-800 */
+  --dynamic-base-4: #374151; /* Matching borders/gray-700 */
+
+  /* Text Colors */
+  --dynamic-text-primary: #f80a0a;
+  --dynamic-text-secondary: #9ca3af; /* gray-400 */
+  --dynamic-text-tertiary: #6b7280; /* gray-500 */
+
+  /* Borders & Radius */
+  --dynamic-border-radius: 12px;
+
+  /* Connect Button Overrides */
+  --dynamic-connect-button-background: #4f46e5;
+  --dynamic-connect-button-color: #ffffff;
+  --dynamic-connect-button-border-radius: 8px;
+
+  /* Overlay/Modal */
+  --dynamic-overlay: rgba(0, 0, 0, 0.7);
+  --dynamic-modal-border: 1px solid rgba(255, 255, 255, 0.1);
+}

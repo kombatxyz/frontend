@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
+@import 'tailwindcss';
+@font-face {
+  font-family: 'TuskerGrotesk-Semibold';
+  src: url('../assets/fonts/TuskerGrotesk-4600Semibold.woff');
+}
+@font-face {
+  font-family: 'TuskerGrotesk-Medium-5500';
+  src: url('../assets/fonts/TuskerGrotesk-5500Medium.woff');
+}
+@font-face {
+  font-family: 'TuskerGrotesk-Medium-4500';
+  src: url('../assets/fonts/TuskerGrotesk-4500Medium.woff');
+}
+
+@font-face {
+  font-family: 'TuskerGrotesk-Medium-6500';
+  src: url('../assets/fonts/TuskerGrotesk-6500Medium.woff');
+}
+
+@font-face {
+  font-family: 'ABC-Diatype';
+  src: url('../assets/fonts/ABC Diatype Mono.woff');
+}
+@font-face {
+  font-family: 'Blanc-Groove-Regular';
+  src: url('../assets/fonts/BlancGroove-Regular.ttf');
+}
+@font-face {
+  font-family: 'Blanc-Groove-Medium';
+  src: url('../assets/fonts/BlancGroove-Medium.ttf');
+}
+@font-face {
+  font-family: 'Blanc-Groove-Semibold';
+  src: url('../assets/fonts/BlancGroove-SemiBold.ttf');
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+body {
+  color: var(--foreground);
+  background-color: #080b11;
+  font-family: 'ABC-Diatype';
+  overflow-x: hidden;
+}
+
+ul {
+  list-style: none;
+}
+
+input,
+textarea {
+  outline: none;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 0.4px solid rgba(255, 255, 255, 0.07);
+  -webkit-text-fill-color: #ffffff;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff00 inset;
+  transition: background-color 5000s ease-in-out 0s;
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+  border: none;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  background: transparent;
+  border: none;
+}
+a,
+link {
+  text-decoration: none;
+  border: none;
+  outline: none;
+}
+.sandbox-indicator {
+  display: none !important;
+}
+.vertical-accordion__container {
+  background: #000 !important;
+}

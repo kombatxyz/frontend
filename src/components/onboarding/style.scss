@@ -1,0 +1,229 @@
+@import '@/styles/variables.scss';
+
+.onboarding-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .skip-tour-btn-container {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+  .skip-tour-btn {
+    position: relative;
+    color: $color-white;
+    font-family: 'ABC-Diatype', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    span {
+      position: absolute;
+      top: 1rem;
+      left: 8.5rem;
+      z-index: 2222;
+      color: #000;
+    }
+  }
+
+  // Main content container
+  .onboarding-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    max-width: 500px;
+    width: 90%;
+
+    // Navigation arrows
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 20px;
+
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &.nav-arrow-left {
+        left: -10px;
+        top: 250px;
+        z-index: 1111;
+
+        // &:hover:not(.disabled) {
+        // }
+
+        // &.disabled {
+        //   opacity: 0.3;
+        //   cursor: not-allowed;
+        // }
+      }
+
+      &.nav-arrow-right {
+        right: -10px;
+        top: 250px;
+
+        &:hover {
+          transform: translateY(-50%) scale(1.05);
+        }
+      }
+    }
+
+    // Step content
+    .onboarding-step {
+      text-align: center;
+      padding: 0 20px;
+
+      .onboarding-text {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        bottom: 3rem;
+        left: 4rem;
+        text-align: left;
+
+        .step-title {
+          font-family: 'TuskerGrotesk-Medium-5500';
+          font-size: 28px;
+          margin-bottom: 12px;
+        }
+
+        .step-description {
+          font-family: 'ABC-Diatype', sans-serif;
+          font-size: 14px;
+          color: rgba(255, 255, 255, 0.6);
+          line-height: 150%;
+          max-width: 370px;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
+  // Step dots indicator
+  .step-dots {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+    position: absolute;
+    top: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .dot {
+      width: 140px;
+      height: 2px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.19);
+      transition: all 0.3s ease;
+
+      &.active {
+        background: #e85f16;
+      }
+    }
+  }
+
+  // Responsive adjustments - Tablet
+  @media (max-width: 768px) {
+    .skip-tour-btn {
+      top: 16px;
+      right: 16px;
+      padding: 10px 18px;
+      font-size: 13px;
+    }
+
+    .onboarding-content {
+      max-width: 90%;
+
+      .nav-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+
+        &.nav-arrow-left {
+          left: -50px;
+        }
+
+        &.nav-arrow-right {
+          right: -50px;
+        }
+      }
+
+      .onboarding-step {
+        .step-title {
+          font-size: 22px;
+        }
+
+        .step-description {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+
+  // Responsive adjustments - Mobile
+  @media (max-width: 480px) {
+    .onboarding-content {
+      .nav-arrow {
+        &.nav-arrow-left {
+          left: 10px;
+          top: auto;
+          bottom: 120px;
+          transform: translateY(0);
+        }
+
+        &.nav-arrow-right {
+          right: 10px;
+          top: auto;
+          bottom: 120px;
+          transform: translateY(0);
+
+          &:hover {
+            transform: scale(1.05);
+          }
+        }
+      }
+
+      .onboarding-highlight {
+        .mock-card {
+          padding: 16px;
+
+          .mock-card-title {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,250 @@
+.profile-container {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  margin-top: 124px;
+  display: flex;
+  flex-direction: column;
+
+  .back-btn {
+    margin-bottom: 20px;
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      text-transform: uppercase;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+  }
+
+  .profile-content-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+
+      h2 {
+        font-size: 2rem;
+        font-family: 'TuskerGrotesk-Medium-5500';
+        color: #ffffff;
+      }
+    }
+
+    .profile-glass-card {
+      position: relative;
+      overflow: hidden;
+      max-width: 400px;
+      border-right: 0.83px solid #ffffff26;
+      padding-right: 2rem;
+
+      .profile-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        .edit-avatar {
+        }
+        .avatar-section {
+          position: relative;
+        }
+
+        .profile-main-content {
+          flex-grow: 1;
+          width: 100%;
+
+          .edit-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+
+            .upload-avatar {
+              .upload-btn {
+                position: absolute;
+                top: 60px;
+                left: 24px;
+                width: 32px;
+                height: 32px;
+                background: #090d14;
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                box-shadow: inset 0px 0px 16px rgba(255, 255, 255, 0.1);
+                border-radius: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+              }
+            }
+
+            .grid-cols {
+              display: grid;
+              grid-template-columns: 1fr;
+              gap: 1.5rem;
+
+              @media (min-width: 768px) {
+                grid-template-columns: repeat(2, 1fr);
+              }
+            }
+
+            .input-group {
+              display: flex;
+              flex-direction: column;
+              gap: 0.5rem;
+
+              label {
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: #9ca3af;
+                margin-left: 0.25rem;
+              }
+
+              input,
+              textarea {
+                width: 100%;
+                background-color: #0b0c10;
+                border: 1px solid #2a2d3d;
+                border-radius: 0.75rem;
+                padding: 0.75rem 1rem;
+                color: white;
+                transition: border-color 150ms;
+
+                &:focus {
+                  outline: none;
+                  border-color: #3b82f6;
+                }
+              }
+
+              textarea {
+                resize: none;
+              }
+            }
+
+            .form-actions {
+              display: flex;
+              justify-content: flex-end;
+              gap: 0.75rem;
+              padding-top: 1rem;
+
+              .cancel-btn {
+                padding: 0.625rem 1.5rem;
+                border-radius: 0.75rem;
+                color: #9ca3af;
+                transition: all 300ms;
+
+                &:hover {
+                  color: white;
+                  background-color: #2a2d3d;
+                }
+              }
+
+              .save-btn {
+                padding: 0.625rem 2rem;
+                border-radius: 0.75rem;
+                background: linear-gradient(to right, #2563eb, #9333ea);
+                color: white;
+                font-weight: 500;
+                transition: all 300ms;
+                box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2);
+
+                &:hover {
+                  opacity: 0.9;
+                }
+
+                &:disabled {
+                  opacity: 0.5;
+                }
+              }
+            }
+          }
+
+          .view-mode {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            color: #d1d5db;
+
+            .avatar-section {
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+
+              @media (min-width: 768px) {
+                margin-left: 0;
+                margin-right: 0;
+              }
+
+              .avatar-display {
+                width: 64px;
+                height: 64px;
+                border-radius: 9999px;
+
+                background: linear-gradient(
+                      rgba(217, 217, 217, 0.1),
+                      rgba(217, 217, 217, 0.1)
+                    )
+                    padding-box,
+                  linear-gradient(180deg, #f46f0f 0%, #c1272d 100%) border-box;
+                border: 2.95px solid transparent;
+
+                img {
+                  border-radius: 9999px;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center;
+                }
+              }
+
+              .user-info {
+                display: flex;
+                flex-direction: column;
+                gap: 0.25rem;
+
+                h3 {
+                  font-size: 16px;
+                  color: #fff;
+                  font-family: 'Blanc-Groove-Medium';
+                }
+
+                .user-email {
+                  font-size: 14px;
+                }
+              }
+            }
+
+            .wallet-tag {
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+
+              p {
+                font-size: 14px;
+                font-family: 'ABC-Diatype';
+                color: #ffffff66;
+              }
+            }
+
+            .info-box {
+
+              p {
+                line-height: 1.625;
+                color: #d1d5db;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

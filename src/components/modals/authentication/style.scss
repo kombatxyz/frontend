@@ -1,0 +1,46 @@
+.modal-card {
+  display: block;
+
+  .accordion-item {
+    background: #0a0d15;
+    border-radius: 24px;
+  }
+  .input__container .input {
+    border-radius: 24px !important;
+  }
+  .input__container--dense .input {
+    padding-left: 1rem !important;
+  }
+  .button:disabled:not(.button--loading) {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    .typography {
+      color: rgba(255, 255, 255, 0.4);
+      font-family: 'Blanc-Groove-Medium';
+      font-size: 16px;
+    }
+  }
+  .button--brand-primary {
+    border-radius: 24px !important;
+    background: #fff;
+    color: #0a0d15;
+    margin-top: 0.5rem;
+  }
+
+  .wallet-list-item__tile.list-tile {
+    border-radius: 50px;
+    margin-bottom: 4px;
+    background: #1c1e26;
+    height: 45px;
+  }
+  .dynamic-footer.dynamic-footer__top-border {
+    display: none;
+  }
+  .login-with-email-wallet-list__container {
+    padding: 1rem 8px;
+    padding-bottom: .5rem;
+    background: #12141b;
+    border-radius: 12px;
+  }
+}
