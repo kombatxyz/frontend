@@ -47,7 +47,7 @@ interface OnboardingProps {
   onComplete: () => void;
 }
 
-const SLIDE_DURATION = 500000; 
+const SLIDE_DURATION = 10000; 
 
 const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
   const [currentStep, setCurrentStep] = useState(0);

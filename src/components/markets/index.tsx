@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import Navbar from '../navbar';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import MarketCard, { MarketTag } from '../cards/market-card';
+import LazyMarketCard from '../cards/market-card/LazyMarketCard';
+import MarketCardSkeleton from '../cards/market-card/MarketCardSkeleton';
 import {
   SearchIcon,
   FilterIcon,
@@ -234,10 +236,15 @@ const Markets: React.FC = () => {
             className={`market-cards-grid ${hasSidebar ? 'flex-1' : 'w-full'}`}
           >
             {isLoading ? (
-              <div className="loading-state">Loading markets...</div>
+              // Show 6 skeleton cards during loading
+              <>
+                {Array.from({ length: 6 }).map((_, index) => (
+                  <MarketCardSkeleton key={`skeleton-${index}`} />
+                ))}
+              </>
             ) : displayedMarkets.length > 0 ? (
               displayedMarkets.map((market: Market, index: number) => (
-                <MarketCard key={index} {...market} />
+                <LazyMarketCard key={index} {...market} />
               ))
             ) : (
               renderEmptyState()
