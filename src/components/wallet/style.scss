@@ -3,7 +3,7 @@
   justify-content: space-between;
   gap: 80px;
   width: 100%;
-  max-width: 1500px;
+  max-width: 1360px;
   margin: 0 auto;
   margin-top: 60px;
 
@@ -18,14 +18,17 @@
       max-width: 500px;
       padding: 2.6rem;
       padding-bottom: 5rem;
-    //   background: #0a0d15;
-    //   stroke-width: 0.951px;
-    //   stroke: rgba(255, 255, 255, 0.15);
-    //   box-shadow: 0px 0px 45.653px 13.784px rgba(255, 255, 255, 0.1) inset;
-      background: url("../../assets/images/wallet-balance-bg.svg");
+      //   background: #0a0d15;
+      //   stroke-width: 0.951px;
+      //   stroke: rgba(255, 255, 255, 0.15);
+      //   box-shadow: 0px 0px 45.653px 13.784px rgba(255, 255, 255, 0.1) inset;
+      background: url('../../assets/images/wallet-balance-bg.png');
       background-size: cover;
       background-position: top;
       background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
       .title {
         display: flex;
         align-items: center;

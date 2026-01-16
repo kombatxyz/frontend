@@ -16,6 +16,9 @@ import NotificationModal from '../modals/notification';
 import AvatarPlaceholder from '@/assets/images/avatar-placeholder.png';
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 import KombatLogo from '@/assets/images/Kombat.svg';
+import { useBalance } from 'wagmi';
+
+
 const Navbar: React.FC = () => {
   const { setShowAuthFlow, user, handleLogOut, primaryWallet } =
     useDynamicContext();
@@ -24,6 +27,14 @@ const Navbar: React.FC = () => {
   const [isNotificationModalOpen, setNotificationModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+
+  const { data: balanceData } = useBalance({
+    address: primaryWallet?.address as `0x${string}`,
+    chainId: 5003,
+    query: {
+      enabled: !!primaryWallet?.address,
+    },
+  });
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -40,6 +51,9 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
     const handleNotificationModalClickOutside = (event: MouseEvent) => {
       // ... existing code ...
       if (
@@ -109,14 +123,21 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
 
-        {isMounted && user && (
+        {isMounted && primaryWallet && (
           <div className="cta">
             <div
               className="wallet-balance"
               onClick={() => setIsModalOpen(true)}
             >
               <WalletIcon />
-              <span>$0.00</span>
+              <span>
+                {balanceData && balanceData.value !== undefined
+                  ? `${(
+                      Number(balanceData.value) /
+                      10 ** balanceData.decimals
+                    ).toFixed(4)} ${balanceData.symbol}`
+                  : '0.0000 MNT'}
+              </span>
             </div>
 
             <div
@@ -152,7 +173,7 @@ const Navbar: React.FC = () => {
           </div>
         )}
 
-        {isMounted && !user && (
+        {isMounted && !primaryWallet && (
           <div className="authentication">
             <button id="login-btn" onClick={() => setShowAuthFlow(true)}>
               Login
@@ -175,19 +196,19 @@ const Navbar: React.FC = () => {
                 <div className="nav-links-mobile">
                   <Link
                     href="/overview"
-                    className={pathname === '/overview' ? 'active' : ''}
+                    className={pathname === '/' ? 'active' : ''}
                     onClick={() => setDropdownOpen(false)}
                   >
                     <NavLinkIcon />
-                    Overview
+                    Markets
                   </Link>
                   <Link
                     href="/wallet"
-                    className={pathname === '/wallet' ? 'active' : ''}
+                    className={pathname === '/p2p' ? 'active' : ''}
                     onClick={() => setDropdownOpen(false)}
                   >
                     <NavLinkIcon />
-                    Wallet
+                    P2P
                   </Link>
                 </div>
                 <Link
@@ -219,6 +240,7 @@ const Navbar: React.FC = () => {
           </div>
         )}
       </div>
+
 
       {isModalOpen && <FundWalletModal closeModal={closeModal} />}
     </div>

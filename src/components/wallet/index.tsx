@@ -6,6 +6,7 @@ import avatar from '@/assets/images/icons/profile-pics.svg';
 import buttonBg from '@/assets/images/icons/button-bg.svg';
 import Image from 'next/image';
 import FundWalletModal from '../modals/fund-wallet-modal';
+import P2PBackgroundGrid from '@/assets/images/p2p-background-grid.svg';
 
 const Walllet = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -52,6 +53,8 @@ const Walllet = () => {
       </div>
 
       {isModalOpen && <FundWalletModal closeModal={closeModal} />}
+
+       <Image src={P2PBackgroundGrid} alt="" className="p2p-background-grid" />
     </div>
   );
 };
