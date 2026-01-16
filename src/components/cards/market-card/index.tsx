@@ -310,8 +310,9 @@ const MarketCard: React.FC<MarketCardProps> = ({
             <img src={image} alt="" className="market-image" />
           )}
           <h3
-            className="market-card-title"
-            style={{ display: leftLogo && rightLogo ? 'none' : 'block' }}
+            className={`market-card-title ${
+              leftLogo && rightLogo ? 'hidden' : ''
+            }`}
           >
             {title}
           </h3>

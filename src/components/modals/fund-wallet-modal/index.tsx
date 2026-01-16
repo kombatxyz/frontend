@@ -11,8 +11,8 @@ const FundWalletModal: React.FC<FundWalletModalProps> = ({ closeModal }) => {
   const { primaryWallet } = useDynamicContext();
   const [isCopied, setIsCopied] = useState(false);
 
-  // Use the actual wallet address if available, otherwise fallback to placeholder
-  const walletAddress = primaryWallet?.address || '0xhdjd3232ninvd999dcdcdpump';
+  // Get wallet address from primaryWallet (will be populated when embedded wallets are enabled)
+  const walletAddress = primaryWallet?.address || '';
 
   const copyToClipboard = async () => {
     try {
