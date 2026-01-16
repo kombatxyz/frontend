@@ -11,13 +11,7 @@ import InsufficientFundToast from '@/components/modals/toast';
 import SuccessToast from '@/components/modals/success-toast';
 import P2PBackgroundGrid from '@/assets/images/p2p-background-grid.svg';
 
-
-interface ToastProps {
-  message: string;
-  onClose: () => void;
-}
-
-const NewKombatForm: React.FC<ToastProps> = () => {
+const NewKombatForm: React.FC = () => {
   const [showInsufficientFundToast, setShowInsufficientFundToast] =
     useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
