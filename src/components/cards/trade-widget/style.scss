@@ -27,11 +27,13 @@
         color: rgba(255, 255, 255, 0.5);
         font-family: 'TuskerGrotesk-Medium-4500';
         font-size: 24px;
+
         &.active {
           color: #fff;
         }
       }
     }
+
     .order-types {
       position: relative;
       display: flex;
@@ -116,6 +118,7 @@
       font-family: 'Blanc-Groove-Regular';
       font-size: 14px;
     }
+
     .outcome-select {
       display: flex;
       flex-direction: column;
@@ -143,6 +146,7 @@
             background-color: #191f2a;
             color: rgba(255, 255, 255, 0.4);
           }
+
           &.yes.selected {
             background-color: #25af60;
             color: #fff;
@@ -152,10 +156,12 @@
             background-color: #191f2a;
             color: rgba(255, 255, 255, 0.4);
           }
+
           &.no.selected {
             background: #d62634;
             color: #fff;
           }
+
           &.selected {
             opacity: 1;
           }
@@ -280,6 +286,24 @@
     }
   }
 
+  .balance-display {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+
+    .balance-label {
+      font-size: 14px;
+      font-family: 'Blanc-Groove-Regular';
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .balance-value {
+      color: rgba(255, 255, 255, 0.75);
+      font-family: 'Blanc-Groove-Semibold';
+      font-size: 14px;
+    }
+  }
+
   .action-button {
     margin-top: auto;
     width: 100%;
@@ -342,6 +366,7 @@
       }
     }
   }
+
   .close-btn {
     position: absolute;
     top: 10px;

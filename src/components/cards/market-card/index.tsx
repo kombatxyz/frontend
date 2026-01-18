@@ -6,12 +6,17 @@ import { BookmarkIcon, BookmarkedIcon } from '@/assets/svg';
 import { toggleBookmark } from '@/redux/slice/bookmarkSlice';
 import { RootState } from '@/redux/store';
 import { getMarketSlug } from '@/lib/markets';
+import { MarketOptionRow } from './MarketOptionRow';
+import { useMarketPrices } from '@/hooks/useMarketPrices';
 
 export type MarketOption = {
   name: string;
   percentage: number;
   shortName?: string;
   photo?: string;
+  conditionId?: string; // For fetching orderbook depth
+  yesTokenId?: string;
+  noTokenId?: string;
 };
 
 export type MarketCardType =
@@ -44,6 +49,7 @@ export type MarketCardProps = {
   leftLogo?: string;
   rightLogo?: string;
   image?: string;
+  conditionId?: string; // For binary markets orderbook
 };
 
 const MarketCard: React.FC<MarketCardProps> = ({
@@ -60,12 +66,24 @@ const MarketCard: React.FC<MarketCardProps> = ({
   leftLogo,
   rightLogo,
   image,
+  conditionId,
 }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const bookmarkedMarkets = useSelector(
     (state: RootState) => state.bookmarks.bookmarkedMarkets,
   );
+  
+  // Fetch real-time probability for binary markets
+  const { probability: contractProbability } = useMarketPrices(
+    type === 'binary-buttons' ? conditionId : undefined
+  );
+  
+  // Use contract probability if available, otherwise fall back to percentage prop
+  const displayPercentage = contractProbability !== null 
+    ? Math.round(contractProbability) 
+    : (percentage || 50);
+  
   const isBookmarked = bookmarkedMarkets.some((m) => m.title === title);
   const slug = getMarketSlug({
     id,
@@ -119,34 +137,11 @@ const MarketCard: React.FC<MarketCardProps> = ({
   const renderMultipleChoice = () => (
     <div className="market-card-options">
       {options.map((option, index) => (
-        <div
+        <MarketOptionRow
           key={index}
-          className="market-option"
-          onClick={(e) => handleCardClick(e, option.name, 'yes')}
-        >
-          <div
-            className="option-background"
-            style={{ width: `${option.percentage}%` }}
-          ></div>
-          <span className="option-name">{option.name}</span>
-          <div className="option-right">
-            <span className="option-percentage">{option.percentage}%</span>
-            <div className="hover-badges">
-              <span
-                className="badge badge-yes"
-                onClick={(e) => handleCardClick(e, option.name, 'yes')}
-              >
-                YES
-              </span>
-              <span
-                className="badge badge-no"
-                onClick={(e) => handleCardClick(e, option.name, 'no')}
-              >
-                NO
-              </span>
-            </div>
-          </div>
-        </div>
+          option={option}
+          onClick={handleCardClick}
+        />
       ))}
     </div>
   );
@@ -190,10 +185,10 @@ const MarketCard: React.FC<MarketCardProps> = ({
       <div className="percentage-display">
         <div
           className="option-background"
-          style={{ width: `${percentage}%` }}
+          style={{ width: `${displayPercentage}%` }}
         ></div>
         <span className="percentage-value">
-          {percentage}% <span className="text">Chance</span>
+          {displayPercentage}% <span className="text">Chance</span>
         </span>
       </div>
       <div className="binary-actions">

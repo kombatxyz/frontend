@@ -15,6 +15,9 @@ export interface MarketOption {
   percentage: number;
   shortName?: string;
   photo?: string;
+  conditionId?: string; // For fetching orderbook depth
+  yesTokenId?: string;
+  noTokenId?: string;
 }
 
 export interface Market {

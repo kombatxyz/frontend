@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDownIcon } from '@/assets/svg';
+import { useOrderBookDepth } from '@/hooks/useOrderBookDepth';
 
 interface OrderEntry {
   price: number;
@@ -14,6 +15,7 @@ export interface OrderBookOption {
   photo?: string;
   yesPrice: number;
   noPrice: number;
+  conditionId?: string; // Add conditionId for fetching orderbook
 }
 
 interface OrderBookProps {
@@ -61,6 +63,12 @@ const OrderBook: React.FC<OrderBookProps> = ({
   const [activeTradeTab, setActiveTradeTab] = useState<'yes' | 'no'>('yes');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Fetch real orderbook data from contract
+  const { data: orderbookData, loading, error } = useOrderBookDepth(
+    selectedOption?.conditionId,
+    10 // Fetch top 10 levels
+  );
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -155,42 +163,26 @@ const OrderBook: React.FC<OrderBookProps> = ({
 
       {activeMainTab === 'orderBook' && (
         <>
-          {/* Trade Yes/No Tabs */}
-          <div className="trade-tabs">
-            <button
-              className={`trade-tab ${
-                activeTradeTab === 'yes' ? 'active' : ''
-              }`}
-              onClick={() => setActiveTradeTab('yes')}
-            >
-              Trade Yes
-            </button>
-            <button
-              className={`trade-tab ${activeTradeTab === 'no' ? 'active' : ''}`}
-              onClick={() => setActiveTradeTab('no')}
-            >
-              Trade No
-            </button>
-          </div>
-
-          {/* Trade NO Section */}
+          {/* YES Book */}
           <div className="order-section">
             <div className="section-header">
-              <span className="section-label">TRADE NO</span>
+              <span className="section-label">YES BIDS</span>
               <span className="column-header">PRICE</span>
               <span className="column-header">SHARES</span>
               <span className="column-header">TOTAL</span>
             </div>
             <div className="order-rows">
-              {tradeNoData.map((entry, index) => (
-                <div key={`no-${index}`} className="order-row">
+              {loading && <div className="loading-message">Loading...</div>}
+              {error && <div className="error-message">Failed to load depth</div>}
+              {!loading && !error && orderbookData?.yesBids.map((entry, index) => (
+                <div key={`yes-bid-${index}`} className="order-row">
                   <div className="bar-cell">
                     <div
-                      className="bar bar-no"
+                      className="bar bar-yes"
                       style={{ width: `${entry.percentage}%` }}
                     />
                   </div>
-                  <span className="price-cell price-no">{entry.price}$</span>
+                  <span className="price-cell price-yes">{entry.price}¢</span>
                   <span className="shares-cell">
                     {formatNumber(entry.shares)}
                   </span>
@@ -202,24 +194,24 @@ const OrderBook: React.FC<OrderBookProps> = ({
             </div>
           </div>
 
-          {/* Trade YES Section */}
+          {/* NO Book */}
           <div className="order-section">
             <div className="section-header">
-              <span className="section-label">TRADE YES</span>
+              <span className="section-label">NO BIDS</span>
               <span className="column-header">PRICE</span>
               <span className="column-header">SHARES</span>
               <span className="column-header">TOTAL</span>
             </div>
             <div className="order-rows">
-              {tradeYesData.map((entry, index) => (
-                <div key={`yes-${index}`} className="order-row">
+              {!loading && !error && orderbookData?.noBids.map((entry, index) => (
+                <div key={`no-bid-${index}`} className="order-row">
                   <div className="bar-cell">
                     <div
-                      className="bar bar-yes"
+                      className="bar bar-no"
                       style={{ width: `${entry.percentage}%` }}
                     />
                   </div>
-                  <span className="price-cell price-yes">{entry.price}$</span>
+                  <span className="price-cell price-no">{entry.price}¢</span>
                   <span className="shares-cell">
                     {formatNumber(entry.shares)}
                   </span>

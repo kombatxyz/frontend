@@ -18,6 +18,9 @@ export interface Market {
   leftLogo?: string;
   rightLogo?: string;
   image?: string;
+  conditionId?: string; // For binary markets orderbook
+  yesTokenId?: string;
+  noTokenId?: string;
 }
 
 export const marketData: Market[] = [
