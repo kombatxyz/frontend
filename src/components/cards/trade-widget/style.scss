@@ -352,4 +352,366 @@
     font-size: 20px;
     cursor: pointer;
   }
+
+  // Tablet Landscape: 1024px and below
+  @media (max-width: 1024px) {
+    min-width: 400px;
+    padding: 32px 36px;
+    min-height: 650px;
+
+    .trade-header {
+      .buy-sell-tabs {
+        gap: 0.75rem;
+
+        .tab {
+          font-size: 22px;
+        }
+      }
+
+      .order-types {
+        .order-toggle {
+          font-size: 13px;
+          padding: 0 14px;
+          height: 24px;
+        }
+
+        .slider {
+          height: 24px;
+        }
+      }
+    }
+
+    .outcome-info {
+      gap: 10px;
+      margin-top: 20px;
+
+      .outcome-photo {
+        width: 32px;
+        height: 28px;
+      }
+
+      .outcome-name {
+        font-size: 16px;
+      }
+    }
+
+    .trade-form {
+      margin-top: 20px;
+      padding: 14px 18px;
+
+      label {
+        font-size: 13px;
+      }
+
+      .outcome-select {
+        .outcome-buttons {
+          gap: 10px;
+
+          .outcome-button {
+            height: 48px;
+            font-size: 13px;
+          }
+        }
+      }
+
+      .input-section {
+        margin-top: 16px;
+
+        .input-group {
+          height: 52px;
+
+          input {
+            font-size: 15px;
+          }
+        }
+      }
+    }
+
+    .total-section {
+      margin-top: 16px;
+
+      label {
+        font-size: 13px;
+      }
+
+      span {
+        font-size: 15px;
+      }
+    }
+
+    .expiry-section {
+      margin-top: 20px;
+
+      label,
+      .expiry-toggle {
+        font-size: 13px;
+      }
+    }
+
+    .to-win-section {
+      label {
+        font-size: 13px;
+      }
+
+      .profit {
+        font-size: 15px;
+      }
+    }
+
+    .action-button {
+      height: 56px;
+      font-size: 17px;
+    }
+  }
+
+  // Tablet Portrait & Mobile: 768px and below
+  @media (max-width: 768px) {
+    min-width: 100%;
+    width: 100%;
+    padding: 28px 30px;
+    min-height: 600px;
+    background-size: cover;
+
+    .trade-header {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+
+      .buy-sell-tabs {
+        gap: 0.5rem;
+        width: 100%;
+
+        .tab {
+          font-size: 20px;
+        }
+      }
+
+      .order-types {
+        width: 100%;
+
+        .order-toggle {
+          flex: 1;
+          font-size: 12px;
+          padding: 0 12px;
+        }
+      }
+    }
+
+    .outcome-info {
+      margin-top: 18px;
+
+      .outcome-photo {
+        width: 30px;
+        height: 26px;
+      }
+
+      .outcome-name {
+        font-size: 15px;
+      }
+    }
+
+    .trade-form {
+      margin-top: 18px;
+      padding: 12px 16px;
+
+      label {
+        font-size: 12px;
+      }
+
+      .outcome-select {
+        .outcome-buttons {
+          gap: 8px;
+
+          .outcome-button {
+            height: 44px;
+            font-size: 12px;
+          }
+        }
+      }
+
+      .input-section {
+        margin-top: 14px;
+
+        .input-group {
+          height: 48px;
+          padding: 12px 10px;
+
+          button {
+            min-width: 36px;
+            height: 36px;
+          }
+
+          input {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    .total-section {
+      margin-top: 14px;
+
+      label {
+        font-size: 12px;
+      }
+
+      span {
+        font-size: 14px;
+      }
+    }
+
+    .expiry-section {
+      margin-top: 18px;
+
+      label,
+      .expiry-toggle {
+        font-size: 12px;
+      }
+    }
+
+    .to-win-section {
+      label {
+        font-size: 12px;
+      }
+
+      .profit {
+        font-size: 14px;
+      }
+    }
+
+    .action-button {
+      height: 52px;
+      font-size: 16px;
+    }
+
+    .expiry-modal {
+      right: 0;
+      left: 0;
+      bottom: -30px;
+    }
+  }
+
+  // Mobile: 480px and below
+  @media (max-width: 480px) {
+    padding: 24px 20px;
+    min-height: 550px;
+
+    .trade-header {
+      gap: 0.75rem;
+
+      .buy-sell-tabs {
+        .tab {
+          font-size: 18px;
+        }
+      }
+
+      .order-types {
+        .order-toggle {
+          font-size: 11px;
+          padding: 0 10px;
+          height: 22px;
+        }
+
+        .slider {
+          height: 22px;
+        }
+      }
+    }
+
+    .outcome-info {
+      gap: 8px;
+      margin-top: 16px;
+
+      .outcome-photo {
+        width: 28px;
+        height: 24px;
+      }
+
+      .outcome-name {
+        font-size: 14px;
+      }
+    }
+
+    .trade-form {
+      margin-top: 16px;
+      padding: 10px 14px;
+
+      label {
+        font-size: 11px;
+      }
+
+      .outcome-select {
+        .outcome-buttons {
+          gap: 6px;
+
+          .outcome-button {
+            height: 40px;
+            font-size: 11px;
+          }
+        }
+      }
+
+      .input-section {
+        margin-top: 12px;
+
+        .input-group {
+          height: 44px;
+          padding: 10px 8px;
+
+          button {
+            min-width: 32px;
+            height: 32px;
+
+            .minus {
+              width: 10px;
+            }
+          }
+
+          input {
+            font-size: 13px;
+            max-width: 120px;
+          }
+        }
+      }
+    }
+
+    .total-section {
+      margin-top: 12px;
+
+      label {
+        font-size: 11px;
+      }
+
+      span {
+        font-size: 13px;
+      }
+    }
+
+    .expiry-section {
+      margin-top: 16px;
+
+      label,
+      .expiry-toggle {
+        font-size: 11px;
+        gap: 8px;
+      }
+    }
+
+    .to-win-section {
+      margin-top: 0.75rem;
+
+      label {
+        font-size: 11px;
+      }
+
+      .profit {
+        font-size: 13px;
+      }
+    }
+
+    .action-button {
+      height: 48px;
+      font-size: 15px;
+    }
+  }
 }

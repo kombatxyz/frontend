@@ -30,7 +30,7 @@
       padding: 1.2rem 1.5rem !important;
     }
     @media (max-width: 468px) {
-      padding: 1.2rem 1.5rem !important;
+      padding: 1rem 1.5rem !important;
     }
 
     .logo {
@@ -160,6 +160,12 @@
         background: #180406;
         box-shadow: 0px 0px 16px 0px rgba(255, 255, 255, 0.1) inset;
         position: relative;
+        
+          @media (max-width: 480px) {
+            width: 32px;
+            height: 32px;
+            padding: 6px !important;
+          }
         svg {
           width: 24px;
           height: 24px;

@@ -180,6 +180,267 @@
       font-family: 'Geist Mono', monospace;
     }
   }
+
+  // Tablet Landscape: 1024px and below
+  @media (max-width: 1024px) {
+    height: auto;
+    min-height: 600px;
+
+    .widget-header {
+      padding: 1.5rem;
+
+      .event-info-section {
+        gap: 12px;
+
+        .event-logo {
+          width: 42px;
+          height: 42px;
+        }
+
+        .info-content {
+          gap: 0.75rem;
+
+          .event-title {
+            font-size: 24px;
+          }
+        }
+      }
+
+      .event-stats {
+        margin-top: 0.75rem;
+        gap: 1.5rem;
+        font-size: 13px;
+      }
+
+      .actions {
+        .copy-link-btn {
+          width: 36px;
+          height: 36px;
+        }
+      }
+    }
+
+    .probability-header {
+      padding-left: 1.5rem;
+
+      .outcome-label {
+        font-size: 13px;
+      }
+
+      .probability-value {
+        font-size: 22px;
+      }
+    }
+
+    .options-legend {
+      padding: 0 1.5rem;
+      gap: 20px;
+
+      .legend-item {
+        .name {
+          font-size: 13px;
+        }
+      }
+    }
+
+    .time-selector {
+      top: 180px;
+      right: 20px;
+
+      .time-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+      }
+    }
+
+    .chart-container {
+      min-height: 400px;
+      margin-top: 2.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  // Tablet Portrait: 768px and below
+  @media (max-width: 768px) {
+    max-width: 100%;
+    min-height: 500px;
+    background-size: cover;
+
+    .widget-header {
+      padding: 1.25rem;
+
+      .event-info-section {
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .event-logo {
+          width: 38px;
+          height: 38px;
+        }
+
+        .info-content {
+          flex: 1;
+          gap: 0.5rem;
+
+          .event-title {
+            font-size: 20px;
+            line-height: 1.2;
+          }
+        }
+
+        .actions {
+          width: 100%;
+          margin-top: 0.5rem;
+
+          .copy-link-btn {
+            width: 34px;
+            height: 34px;
+          }
+        }
+      }
+
+      .event-stats {
+        margin-top: 0.5rem;
+        gap: 1.25rem;
+        font-size: 12px;
+        flex-wrap: wrap;
+      }
+    }
+
+    .probability-header {
+      padding-left: 1.25rem;
+
+      .outcome-label {
+        font-size: 12px;
+      }
+
+      .probability-value {
+        font-size: 20px;
+      }
+    }
+
+    .options-legend {
+      padding: 0 1.25rem;
+      gap: 16px;
+      flex-wrap: wrap;
+
+      .legend-item {
+        .dot {
+          width: 10px;
+          height: 10px;
+        }
+
+        .name {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .time-selector {
+      position: static;
+      justify-content: center;
+      padding: 0 1.25rem;
+      margin-top: 1rem;
+
+      .time-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+    }
+
+    .chart-container {
+      min-height: 350px;
+      margin-top: 1.5rem;
+      padding-right: 1.25rem;
+      padding-left: 1.25rem;
+    }
+  }
+
+  // Mobile: 480px and below
+  @media (max-width: 480px) {
+    min-height: 450px;
+    margin-bottom: 16px;
+    gap: 16px;
+
+    .widget-header {
+      padding: 1rem;
+
+      .event-info-section {
+        gap: 8px;
+
+        .event-logo {
+          width: 32px;
+          height: 32px;
+        }
+
+        .info-content {
+          .event-title {
+            font-size: 18px;
+          }
+        }
+
+        .actions {
+          margin-top: 0.25rem;
+
+          .copy-link-btn {
+            width: 32px;
+            height: 32px;
+          }
+        }
+      }
+
+      .event-stats {
+        gap: 1rem;
+        font-size: 11px;
+      }
+    }
+
+    .probability-header {
+      padding-left: 1rem;
+
+      .outcome-label {
+        font-size: 11px;
+      }
+
+      .probability-value {
+        font-size: 18px;
+      }
+    }
+
+    .options-legend {
+      padding: 0 1rem;
+      gap: 12px;
+
+      .legend-item {
+        .dot {
+          width: 8px;
+          height: 8px;
+        }
+
+        .name {
+          font-size: 11px;
+        }
+      }
+    }
+
+    .time-selector {
+      padding: 0 1rem;
+      gap: 6px;
+
+      .time-btn {
+        padding: 5px 8px;
+        font-size: 11px;
+      }
+    }
+
+    .chart-container {
+      min-height: 300px;
+      margin-top: 1rem;
+      padding-right: 1rem;
+      padding-left: 1rem;
+      padding-bottom: 1rem;
+    }
+  }
 }
 .recharts-surface {
   border: none;

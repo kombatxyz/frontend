@@ -1,11 +1,10 @@
 .market-card {
   padding: 5px;
   width: 100%;
-  max-width: 322px;
-  height: 299px;
+  min-width: 322px;
+  min-height: 299px;
   display: flex;
   flex-direction: column;
-  //   justify-content: space-between;
   position: relative;
   transition: all 0.3s ease;
   background-image: url("data:image/svg+xml,%3Csvg width='322' height='299' viewBox='0 0 322 299' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_250_2)'%3E%3CforeignObject x='0' y='0' width='321.05' height='299'%3E%3Cdiv xmlns='http://www.w3.org/1999/xhtml' style='backdrop-filter:blur(2.39px);clip-path:url(%23bgblur_1_250_2_clip_path);height:100%25;width:100%25'%3E%3C/div%3E%3C/foreignObject%3E%3Cg data-figma-bg-blur-radius='4.78206'%3E%3Cg filter='url(%23filter0_i_250_2)'%3E%3Cpath d='M0 21.1681C0 9.47731 9.4773 0 21.1681 0H299.882C311.573 0 321.05 9.4773 321.05 21.1681V254.358C321.05 257.603 320.304 260.804 318.87 263.714L307.303 287.188C303.74 294.42 296.377 299 288.315 299H21.1681C9.47729 299 0 289.523 0 277.832V21.1681Z' fill='%230E1015'/%3E%3C/g%3E%3Cpath d='M21.168 0.597656H299.882C311.242 0.597656 320.452 9.80734 320.452 21.168V254.358C320.452 257.511 319.728 260.622 318.334 263.45L306.768 286.924C303.305 293.952 296.15 298.402 288.315 298.402H21.168C9.80739 298.402 0.597755 289.193 0.597656 277.832V21.168C0.597754 9.8074 9.8074 0.59775 21.168 0.597656Z' stroke='white' stroke-opacity='0.1' stroke-width='1.19552'/%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_i_250_2' x='0' y='0' width='321.05' height='299' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='BackgroundImageFix' result='shape'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset/%3E%3CfeGaussianBlur stdDeviation='7.05605'/%3E%3CfeComposite in2='hardAlpha' operator='arithmetic' k2='-1' k3='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.1 0'/%3E%3CfeBlend mode='normal' in2='shape' result='effect1_innerShadow_250_2'/%3E%3C/filter%3E%3CclipPath id='bgblur_1_250_2_clip_path' transform='translate(0 0)'%3E%3Cpath d='M0 21.1681C0 9.47731 9.4773 0 21.1681 0H299.882C311.573 0 321.05 9.4773 321.05 21.1681V254.358C321.05 257.603 320.304 260.804 318.87 263.714L307.303 287.188C303.74 294.42 296.377 299 288.315 299H21.1681C9.47729 299 0 289.523 0 277.832V21.1681Z'/%3E%3C/clipPath%3E%3CclipPath id='clip0_250_2'%3E%3Crect width='321.05' height='299' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
@@ -558,14 +557,13 @@
   }
 }
 
-// Responsive
 @media (max-width: 768px) {
   .market-card {
     width: 100%;
-    max-width: 380px;
+    max-width: 322px;
   }
 
   .lazy-market-card-wrapper {
-    max-width: 380px;
+    max-width: 322px;
   }
 }

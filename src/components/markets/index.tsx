@@ -236,9 +236,8 @@ const Markets: React.FC = () => {
             className={`market-cards-grid ${hasSidebar ? 'flex-1' : 'w-full'}`}
           >
             {isLoading ? (
-              // Show 6 skeleton cards during loading
               <>
-                {Array.from({ length: 6 }).map((_, index) => (
+                {Array.from({ length: 8 }).map((_, index) => (
                   <MarketCardSkeleton key={`skeleton-${index}`} />
                 ))}
               </>

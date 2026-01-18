@@ -1,9 +1,10 @@
 .event-container {
   margin: 0 auto;
   margin-top: 124px;
+  padding: 0 50px;
   padding-bottom: 100px;
   width: 100%;
-  max-width: 1360px;
+  max-width: 1460px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -183,12 +184,304 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    gap: 2rem;
+
+    .left-panel {
+      flex: 1;
+    }
 
     .trade-widget {
       position: sticky;
       top: 140px;
       height: fit-content;
       align-self: flex-start;
+    }
+  }
+
+  // Large Desktop: 1200px and below
+  @media (max-width: 1200px) {
+    max-width: 100%;
+    padding: 0 2rem;
+    margin-top: 100px;
+
+    .sport-outcome-widget {
+      margin-top: 40px;
+    }
+
+    .event-content {
+      gap: 1.5rem;
+    }
+  }
+
+  // Tablet Landscape: 1024px and below
+  @media (max-width: 1024px) {
+    padding: 0 1.5rem;
+    margin-top: 120px;
+    padding-bottom: 80px;
+
+    .back-btn {
+      margin-bottom: 16px;
+
+      button {
+        font-size: 14px;
+        gap: 8px;
+      }
+    }
+
+    .sport-outcome-widget {
+      margin-top: 30px;
+
+      .header {
+        padding: 0 24px;
+        height: 44px;
+        font-size: 14px;
+      }
+
+      .outcome-rows {
+        padding: 20px 24px;
+        padding-bottom: 32px;
+        gap: 1.25rem;
+
+        .outcome-row {
+          .option-info {
+            gap: 12px;
+
+            .photo,
+            .draw-icon {
+              width: 44px;
+              height: 44px;
+            }
+
+            .name-vol {
+              .name {
+                font-size: 16px;
+              }
+              .vol {
+                font-size: 13px;
+              }
+            }
+          }
+
+          .chance {
+            .percentage {
+              font-size: 16px;
+            }
+            .label {
+              font-size: 11px;
+            }
+          }
+
+          .buttons {
+            gap: 10px;
+
+            .yes,
+            .no {
+              height: 44px;
+              font-size: 13px;
+            }
+          }
+        }
+      }
+    }
+
+    .event-content {
+      gap: 1.5rem;
+
+      .trade-widget {
+        top: 120px;
+      }
+    }
+  }
+
+  // Tablet Portrait: 768px and below
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+    margin-top: 100px;
+    padding-bottom: 60px;
+
+    .back-btn {
+      margin-bottom: 12px;
+
+      button {
+        font-size: 13px;
+        gap: 6px;
+      }
+    }
+
+    .sport-outcome-widget {
+      margin-top: 24px;
+      max-width: 100%;
+
+      .header {
+        padding: 0 20px;
+        height: 40px;
+        font-size: 12px;
+
+        .outcome-title {
+          width: 45%;
+        }
+        .chance-title {
+          width: 25%;
+        }
+      }
+
+      .outcome-rows {
+        padding: 16px 20px;
+        padding-bottom: 24px;
+        gap: 1rem;
+
+        .outcome-row {
+          flex-wrap: wrap;
+
+          .option-info {
+            width: 100%;
+            gap: 10px;
+
+            .photo,
+            .draw-icon {
+              width: 40px;
+              height: 40px;
+            }
+
+            .draw-icon {
+              font-size: 18px;
+            }
+
+            .name-vol {
+              .name {
+                font-size: 15px;
+              }
+              .vol {
+                font-size: 12px;
+              }
+            }
+          }
+
+          .chance {
+            width: auto;
+            margin-right: auto;
+
+            .percentage {
+              font-size: 15px;
+            }
+          }
+
+          .buttons {
+            width: auto;
+            gap: 8px;
+
+            .yes,
+            .no {
+              min-width: 80px;
+              height: 40px;
+              font-size: 12px;
+              padding: 0 10px;
+            }
+          }
+        }
+      }
+    }
+
+    .event-content {
+      flex-direction: column;
+      gap: 1.5rem;
+
+      .left-panel {
+        width: 100%;
+      }
+
+      .trade-widget {
+        position: relative;
+        top: 0;
+        width: 100%;
+        order: -1;
+      }
+    }
+  }
+
+  // Mobile: 480px and below
+  @media (max-width: 480px) {
+    padding: 0 0.75rem;
+    margin-top: 86px;
+    padding-bottom: 40px;
+
+    .back-btn {
+      margin-bottom: 10px;
+
+      button {
+        font-size: 12px;
+        gap: 5px;
+      }
+    }
+
+    .sport-outcome-widget {
+      margin-top: 20px;
+      border-radius: 16px;
+
+      .header {
+        padding: 0 16px;
+        height: 36px;
+        font-size: 11px;
+        border-top-right-radius: 16px;
+        border-top-left-radius: 16px;
+      }
+
+      .outcome-rows {
+        padding: 12px 16px;
+        padding-bottom: 20px;
+        gap: 0.75rem;
+
+        .outcome-row {
+          .option-info {
+            gap: 8px;
+
+            .photo,
+            .draw-icon {
+              width: 36px;
+              height: 36px;
+            }
+
+            .draw-icon {
+              font-size: 16px;
+            }
+
+            .name-vol {
+              .name {
+                font-size: 14px;
+              }
+              .vol {
+                font-size: 11px;
+              }
+            }
+          }
+
+          .chance {
+            .percentage {
+              font-size: 14px;
+            }
+            .label {
+              font-size: 10px;
+            }
+          }
+
+          .buttons {
+            gap: 6px;
+
+            .yes,
+            .no {
+              min-width: 70px;
+              height: 36px;
+              font-size: 11px;
+              padding: 0 8px;
+              border-radius: 8px;
+            }
+          }
+        }
+      }
+    }
+
+    .event-content {
+      gap: 1rem;
     }
   }
 }
