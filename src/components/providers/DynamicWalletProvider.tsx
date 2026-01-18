@@ -81,10 +81,6 @@ export default function DynamicWalletProvider({
             },
           ],
         },
-        evmNetworkOverrides: {
-          enforceNetworks: true, // Force users to be on Mantle
-        },
-        multiWallet: false,
         recommendedWallets: [
           { walletKey: 'metamask' },
           { walletKey: 'walletconnect' },
