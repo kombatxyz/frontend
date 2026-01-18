@@ -7,6 +7,7 @@ import { DynamicWagmiConnector } from '@dynamic-labs/wagmi-connector';
 import { createConfig, WagmiProvider, http } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { mantleSepoliaTestnet } from 'wagmi/chains';
+import { WalletEffects } from '@/components/WalletEffects';
 
 // Create a custom chain config for Mantle testnet
 const mantleTestnet = {
@@ -80,12 +81,23 @@ export default function DynamicWalletProvider({
             },
           ],
         },
+        evmNetworkOverrides: {
+          enforceNetworks: true, // Force users to be on Mantle
+        },
+        multiWallet: false,
+        recommendedWallets: [
+          { walletKey: 'metamask' },
+          { walletKey: 'walletconnect' },
+        ],
         initialAuthenticationMode: 'connect-only',
       }}
     >
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
-          <DynamicWagmiConnector>{children}</DynamicWagmiConnector>
+          <DynamicWagmiConnector>
+            <WalletEffects />
+            {children}
+          </DynamicWagmiConnector>
         </QueryClientProvider>
       </WagmiProvider>
     </DynamicContextProvider>

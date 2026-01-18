@@ -38,14 +38,29 @@ function mapApiToUiMarket(apiMarket: ApiMarket): Market {
     mappedOptions = apiMarket.options.map((opt) => ({
       name: opt.name,
       shortName: opt.shortName || undefined,
-      percentage: opt.probability ? Math.round(opt.probability * 100) : 50, // Default to 50 if 0/null for binary feeling
+      percentage: opt.probability ? Math.round(opt.probability * 100) : 0, // Use 0 if no probability yet
       photo: opt.imageUrl || undefined,
+      conditionId: opt.conditionId || undefined, // Add conditionId for orderbook fetching
+      yesTokenId: opt.yesTokenId || undefined,
+      noTokenId: opt.noTokenId || undefined,
     }));
   } else if (apiMarket.type === 'binary') {
-    // Default Yes/No for binary markets if no options provided
+    // Default Yes/No for binary markets if no options provided - use market's conditionId
     mappedOptions = [
-      { name: 'Yes', percentage: 50 },
-      { name: 'No', percentage: 50 },
+      { 
+        name: 'Yes', 
+        percentage: 50, 
+        conditionId: apiMarket.conditionId || undefined,
+        yesTokenId: apiMarket.yesTokenId || undefined,
+        noTokenId: apiMarket.noTokenId || undefined,
+      },
+      { 
+        name: 'No', 
+        percentage: 50, 
+        conditionId: apiMarket.conditionId || undefined,
+        yesTokenId: apiMarket.yesTokenId || undefined,
+        noTokenId: apiMarket.noTokenId || undefined,
+      },
     ];
   }
 
@@ -62,6 +77,9 @@ function mapApiToUiMarket(apiMarket: ApiMarket): Market {
     image: apiMarket.imageUrl,
     options: mappedOptions,
     percentage: mappedOptions[0]?.percentage || 50,
+    conditionId: apiMarket.conditionId || undefined, // Include conditionId for orderbook
+    yesTokenId: apiMarket.yesTokenId || undefined,
+    noTokenId: apiMarket.noTokenId || undefined,
   };
 }
 
@@ -86,7 +104,14 @@ export function useMarkets() {
       try {
         const data = await fetchMarkets();
         // Map the API data to the format our UI expects
-        return data.markets.map(mapApiToUiMarket);
+        const markets = data.markets.map(mapApiToUiMarket);
+
+        // Fetch real probabilities from contract for all markets
+        // This will be done client-side using wagmi, but we need a publicClient
+        // For now, return the mapped data and let individual components fetch probabilities
+        // TODO: Enhance this with publicClient to fetch probabilities in batch
+        
+        return markets;
       } catch (error) {
         console.error('Error fetching markets:', error);
         // Fallback to mock data mixed with empty response handling or just return empty

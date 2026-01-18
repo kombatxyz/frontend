@@ -16,7 +16,7 @@ import NotificationModal from '../modals/notification';
 import AvatarPlaceholder from '@/assets/images/avatar-placeholder.png';
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 import KombatLogo from '@/assets/images/Kombat.svg';
-import { useBalance } from 'wagmi';
+import { useUSDCBalance } from '@/hooks/useUSDCBalance';
 
 
 const Navbar: React.FC = () => {
@@ -28,13 +28,7 @@ const Navbar: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
-  const { data: balanceData } = useBalance({
-    address: primaryWallet?.address as `0x${string}`,
-    chainId: 5003,
-    query: {
-      enabled: !!primaryWallet?.address,
-    },
-  });
+  const { formatted: usdcBalance } = useUSDCBalance(primaryWallet?.address);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -131,12 +125,7 @@ const Navbar: React.FC = () => {
             >
               <WalletIcon />
               <span>
-                {balanceData && balanceData.value !== undefined
-                  ? `${(
-                      Number(balanceData.value) /
-                      10 ** balanceData.decimals
-                    ).toFixed(4)} ${balanceData.symbol}`
-                  : '0.0000 MNT'}
+                {usdcBalance} USDC
               </span>
             </div>
 

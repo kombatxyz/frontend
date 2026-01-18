@@ -3,6 +3,7 @@ import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import Navbar from '@/components/navbar';
 import { getMarketSlug, Market } from '@/lib/markets';
 import { useMarkets } from '@/hooks/useMarkets';
+import { useMarketPrices } from '@/hooks/useMarketPrices';
 import MarketCard from '@/components/cards/market-card';
 import TradeWidget from '../cards/trade-widget';
 import { MarketOption } from '@/components/cards/market-card';
@@ -42,18 +43,26 @@ const calculateOptionVolume = (
   }
 };
 
-const Event = () => {
-  const { slug } = useParams<{ slug: string }>();
+const Event: React.FC = () => {
+  const params = useParams();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const slug = params.slug as string;
 
   const { data: markets = [], isLoading } = useMarkets();
-  const market = markets.find((m: Market) => getMarketSlug(m) === slug);
+
+  // Find the market for this event
+  const market = useMemo(() => {
+    if (!markets) return null;
+    return markets.find((m: Market) => getMarketSlug(m) === slug) || null;
+  }, [markets, slug]);
+
   const [selectedOutcome, setSelectedOutcome] = useState<{
     name: string;
     photo: string;
     yesPrice: number;
     noPrice: number;
+    conditionId?: string; // Add conditionId for orderbook
   } | null>(null);
   const [initialSide, setInitialSide] = useState<'yes' | 'no'>('yes');
 
@@ -87,6 +96,7 @@ const Event = () => {
           photo: '',
           yesPrice: drawPercentage,
           noPrice: 100 - drawPercentage,
+          conditionId: undefined, // Draw doesn't have conditionId
         });
       } else if (option) {
         setSelectedOutcome({
@@ -103,6 +113,7 @@ const Event = () => {
             '',
           yesPrice: option.percentage,
           noPrice: 100 - option.percentage,
+          conditionId: option.conditionId, // Include conditionId
         });
       }
     }
@@ -123,6 +134,9 @@ const Event = () => {
         photo: firstOption.photo || '',
         yesPrice: firstOption.percentage,
         noPrice: 100 - firstOption.percentage,
+        conditionId: firstOption.conditionId, // Include conditionId
+        yesTokenId: firstOption.yesTokenId,
+        noTokenId: firstOption.noTokenId,
       };
     } else if (
       market.type === 'match-outcome-buttons' &&
@@ -136,6 +150,9 @@ const Event = () => {
         photo: market.leftLogo || '',
         yesPrice: homeOption.percentage,
         noPrice: 100 - homeOption.percentage,
+        conditionId: homeOption.conditionId, // Include conditionId
+        yesTokenId: homeOption.yesTokenId,
+        noTokenId: homeOption.noTokenId,
       };
     } else {
       const yesP = market.percentage || 50;
@@ -144,22 +161,51 @@ const Event = () => {
         photo: '',
         yesPrice: yesP,
         noPrice: 100 - yesP,
+        conditionId: market.conditionId, // Use market's conditionId for binary
+        yesTokenId: market.yesTokenId,
+        noTokenId: market.noTokenId,
       };
     }
   }, [market]);
 
   // Convert market options to OrderBook format
   const orderBookOptions: OrderBookOption[] = useMemo(() => {
-    if (!market?.options) return [];
-    return market.options.map((opt: MarketOption) => ({
-      name: opt.name,
-      photo: opt.photo,
-      yesPrice: opt.percentage,
-      noPrice: 100 - opt.percentage,
-    }));
-  }, [market?.options]);
+    if (!market) return [];
+    
+    if (market.options && market.options.length > 0) {
+      // Multi-outcome markets
+      return market.options.map((opt: MarketOption) => ({
+        name: opt.name,
+        photo: opt.photo,
+        yesPrice: opt.percentage,
+        noPrice: 100 - opt.percentage,
+        conditionId: opt.conditionId, // Include conditionId for orderbook fetching
+      }));
+    }
+    
+    // Binary markets - return single option with market's conditionId
+    return [];
+  }, [market]);
 
   const currentOutcome = selectedOutcome || defaultOutcome;
+  
+  // Fetch real-time prices for the current outcome
+  const { probability: realYesPrice } = useMarketPrices(currentOutcome?.conditionId);
+  
+  // Create outcome with real prices if available
+  const outcomeWithRealPrices = useMemo(() => {
+    if (!currentOutcome) return null;
+    
+    if (realYesPrice !== null) {
+      return {
+        ...currentOutcome,
+        yesPrice: Math.round(realYesPrice),
+        noPrice: 100 - Math.round(realYesPrice),
+      };
+    }
+    
+    return currentOutcome;
+  }, [currentOutcome, realYesPrice]);
 
   if (isLoading) {
     return (
@@ -189,6 +235,7 @@ const Event = () => {
       photo: option.photo || '',
       yesPrice: option.percentage,
       noPrice: 100 - option.percentage,
+      conditionId: option.conditionId,
     });
     setInitialSide(side);
   };
@@ -199,6 +246,7 @@ const Event = () => {
       photo: option.photo || '',
       yesPrice: option.yesPrice,
       noPrice: option.noPrice,
+      conditionId: option.conditionId,
     });
   };
 
@@ -209,6 +257,7 @@ const Event = () => {
       photo: '',
       yesPrice: yesP,
       noPrice: 100 - yesP,
+      conditionId: market.conditionId,
     });
     setInitialSide('yes');
   };
@@ -311,6 +360,7 @@ const Event = () => {
                             photo: market.leftLogo || '',
                             yesPrice: market.options![0].percentage,
                             noPrice: 100 - market.options![0].percentage,
+                            conditionId: market.options![0].conditionId,
                           });
                           setInitialSide('yes');
                         }}
@@ -535,7 +585,7 @@ const Event = () => {
         </div>
 
         <TradeWidget
-          outcome={currentOutcome!}
+          outcome={outcomeWithRealPrices!}
           initialSide={initialSide}
           onSideChange={setInitialSide}
           marketType={market.type}
