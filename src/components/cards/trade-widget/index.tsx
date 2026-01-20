@@ -64,10 +64,11 @@ const TradeWidget: React.FC<TradeWidgetProps> = ({
   const { writeContract, data: hash, isPending, isError, isSuccess: writeSuccess } = useWriteContract();
   const { isSuccess: txSuccess } = useWaitForTransactionReceipt({ hash });
   
-  // Fetch user's share balances
+  // Fetch user's share balances (uses conditionId to compute positionIds if tokenIds not available)
   const { yesBalance, noBalance, refetch: refetchBalances } = useShareBalance(
     outcome.yesTokenId,
-    outcome.noTokenId
+    outcome.noTokenId,
+    outcome.conditionId
   );
 
   // Refetch balances when transaction succeeds
