@@ -6,15 +6,13 @@ import { EthereumWalletConnectors } from '@dynamic-labs/ethereum';
 import { DynamicWagmiConnector } from '@dynamic-labs/wagmi-connector';
 import { createConfig, WagmiProvider, http } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { mantleSepoliaTestnet } from 'wagmi/chains';
+import { defineChain } from 'viem';
 import { WalletEffects } from '@/components/WalletEffects';
 
-// Create a custom chain config for Mantle testnet
-const mantleTestnet = {
-  ...mantleSepoliaTestnet,
+// Define Mantle Sepolia Testnet chain
+const mantleSepolia = defineChain({
   id: 5003,
-  name: 'Mantle Testnet',
-  network: 'mantle-testnet',
+  name: 'Mantle Sepolia Testnet',
   nativeCurrency: {
     name: 'MNT',
     symbol: 'MNT',
@@ -24,25 +22,22 @@ const mantleTestnet = {
     default: {
       http: ['https://rpc.sepolia.mantle.xyz'],
     },
-    public: {
-      http: ['https://rpc.sepolia.mantle.xyz'],
-    },
   },
   blockExplorers: {
     default: {
-      name: 'Mantle Testnet Explorer',
+      name: 'Mantle Sepolia Explorer',
       url: 'https://explorer.sepolia.mantle.xyz',
     },
   },
   testnet: true,
-};
+});
 
-// Configure wagmi with Mantle testnet
+// Configure wagmi with ONLY Mantle Sepolia
 const config = createConfig({
-  chains: [mantleTestnet],
+  chains: [mantleSepolia],
   multiInjectedProviderDiscovery: false,
   transports: {
-    [mantleTestnet.id]: http(),
+    [mantleSepolia.id]: http('https://rpc.sepolia.mantle.xyz'),
   },
 });
 
@@ -64,27 +59,31 @@ export default function DynamicWalletProvider({
           '63050245-921f-4bf3-ae24-c06ffd98dac2',
         walletConnectors: [EthereumWalletConnectors],
         overrides: {
-          evmNetworks: [
-            {
-              chainId: 5003,
-              networkId: 5003,
-              name: 'Mantle Testnet',
-              vanityName: 'Mantle Testnet',
-              nativeCurrency: {
-                name: 'MNT',
-                symbol: 'MNT',
-                decimals: 18,
+          evmNetworks: (networks) => {
+            // Only allow Mantle Sepolia - filter out all other networks
+            return [
+              {
+                chainId: 5003,
+                networkId: 5003,
+                name: 'Mantle Sepolia',
+                vanityName: 'Mantle Sepolia Testnet',
+                nativeCurrency: {
+                  name: 'MNT',
+                  symbol: 'MNT',
+                  decimals: 18,
+                },
+                rpcUrls: ['https://rpc.sepolia.mantle.xyz'],
+                blockExplorerUrls: ['https://explorer.sepolia.mantle.xyz'],
+                iconUrls: ['https://icons.llamao.fi/icons/chains/rsz_mantle.jpg'],
               },
-              rpcUrls: ['https://rpc.sepolia.mantle.xyz'],
-              blockExplorerUrls: ['https://explorer.sepolia.mantle.xyz'],
-              iconUrls: ['https://icons.llamao.fi/icons/chains/rsz_mantle.jpg'],
-            },
-          ],
+            ];
+          },
         },
         recommendedWallets: [
           { walletKey: 'metamask' },
           { walletKey: 'walletconnect' },
         ],
+        networkValidationMode: 'always', // Always validate network
         initialAuthenticationMode: 'connect-only',
       }}
     >

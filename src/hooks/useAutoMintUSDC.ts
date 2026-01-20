@@ -1,7 +1,9 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
+import { useAccount, useWriteContract, useWaitForTransactionReceipt, useSwitchChain } from 'wagmi';
 import { CONTRACTS } from '@/lib/contracts';
+
+const MANTLE_SEPOLIA_CHAIN_ID = 5003;
 
 const USDC_ABI = [
   {
@@ -33,7 +35,8 @@ const MAX_APPROVAL = BigInt(2) ** BigInt(256) - BigInt(1); // Max uint256 for un
  * Hook that auto-mints test USDC and approves Router to spend it
  */
 export function useAutoMintUSDC() {
-  const { address, isConnected } = useAccount();
+  const { address, isConnected, chainId } = useAccount();
+  const { switchChain } = useSwitchChain();
   const { writeContract, data: hash, isPending, isError, reset } = useWriteContract();
   const { isSuccess } = useWaitForTransactionReceipt({ hash });
   const [showNotification, setShowNotification] = useState(false);
@@ -52,7 +55,18 @@ export function useAutoMintUSDC() {
       return;
     }
 
-    console.log('[AutoSetup] Starting USDC setup for', address);
+    // Check if on correct chain
+    if (chainId !== MANTLE_SEPOLIA_CHAIN_ID) {
+      console.log('[AutoSetup] Wrong chain, switching to Mantle Sepolia...');
+      try {
+        switchChain({ chainId: MANTLE_SEPOLIA_CHAIN_ID });
+      } catch (error) {
+        console.error('[AutoSetup] Failed to switch chain:', error);
+      }
+      return;
+    }
+
+    console.log('[AutoSetup] Starting USDC setup for', address, 'on chain', chainId);
     setShowNotification(true);
     setNotificationStatus('minting');
     setCurrentStep('mint');
@@ -63,13 +77,14 @@ export function useAutoMintUSDC() {
         address: CONTRACTS.USDC as `0x${string}`,
         abi: USDC_ABI,
         functionName: 'mint',
-        args: [address, MINT_AMOUNT]
+        args: [address, MINT_AMOUNT],
+        chainId: MANTLE_SEPOLIA_CHAIN_ID, // Force chain ID
       });
     } catch (error) {
       console.error('[AutoSetup] Failed to mint USDC:', error);
       setNotificationStatus('error');
     }
-  }, [address, isConnected, writeContract]);
+  }, [address, isConnected, chainId, writeContract, switchChain]);
 
   useEffect(() => {
     if (isPending) {
@@ -91,7 +106,8 @@ export function useAutoMintUSDC() {
               address: CONTRACTS.USDC as `0x${string}`,
               abi: USDC_ABI,
               functionName: 'approve',
-              args: [CONTRACTS.PM_ROUTER as `0x${string}`, MAX_APPROVAL]
+              args: [CONTRACTS.PM_ROUTER as `0x${string}`, MAX_APPROVAL],
+              chainId: MANTLE_SEPOLIA_CHAIN_ID, // Force chain ID
             });
           } catch (error) {
             console.error('[AutoSetup] Failed to approve Router:', error);
