@@ -18,21 +18,20 @@ const CONDITIONAL_TOKENS_ABI = [
 
 /**
  * Compute positionId from conditionId and indexSet
- * Formula: positionId = keccak256(abi.encodePacked(collateralToken, keccak256(abi.encodePacked(parentCollectionId, conditionId, indexSet))))
- * For top-level positions, parentCollectionId = bytes32(0)
+ * Formula (from CTHelpers.sol):
+ *   collectionId = keccak256(abi.encodePacked(conditionId, indexSet)) // when parentCollectionId = 0
+ *   positionId = uint256(keccak256(abi.encodePacked(collateralToken, collectionId)))
  */
 function computePositionId(conditionId: string, indexSet: number): bigint {
-  const parentCollectionId = '0x0000000000000000000000000000000000000000000000000000000000000000' as `0x${string}`;
-  
-  // Compute collectionId = keccak256(abi.encodePacked(parentCollectionId, conditionId, indexSet))
+  // collectionId = keccak256(conditionId, indexSet)
   const collectionId = keccak256(
     encodePacked(
-      ['bytes32', 'bytes32', 'uint256'],
-      [parentCollectionId, conditionId as `0x${string}`, BigInt(indexSet)]
+      ['bytes32', 'uint256'],
+      [conditionId as `0x${string}`, BigInt(indexSet)]
     )
   );
   
-  // Compute positionId = keccak256(abi.encodePacked(collateralToken, collectionId))
+  // positionId = keccak256(collateralToken, collectionId)
   const positionId = keccak256(
     encodePacked(
       ['address', 'bytes32'],
