@@ -39,6 +39,15 @@ function computePositionId(conditionId: string, indexSet: number): bigint {
     )
   );
   
+  console.log('[useShareBalance] Computing positionId:', {
+    conditionId,
+    indexSet,
+    collectionId,
+    usdcAddress: CONTRACTS.USDC,
+    positionId,
+    positionIdDecimal: BigInt(positionId).toString()
+  });
+  
   return BigInt(positionId);
 }
 
