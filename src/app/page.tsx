@@ -8,7 +8,7 @@ import {
   initializeOnboardingState,
 } from '@/redux/slice/onboardingSlice';
 import React, { Suspense, useEffect, useState } from 'react';
-
+import { Analytics } from '@vercel/analytics/next';
 export default function Home() {
   const dispatch = useDispatch();
   const hasSeenOnboarding = useSelector(
@@ -28,7 +28,8 @@ export default function Home() {
 
   return (
     <div>
-      <Suspense fallback={<div>Loading markets...</div>}>
+      <Analytics />
+      <Suspense>
         <Markets />
       </Suspense>
       {isMounted && !hasSeenOnboarding && (

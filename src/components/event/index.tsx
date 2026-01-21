@@ -14,7 +14,6 @@ import { BackIcon } from '@/assets/svg';
 import GraphWidget from '../cards/graph-widget';
 import VersusWidget from '../cards/versus-widget';
 
-// Helper function to calculate volume for an option based on its percentage
 const calculateOptionVolume = (
   totalVolume: string,
   percentage: number,
