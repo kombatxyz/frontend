@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePublicClient } from 'wagmi';
 import { CONTRACTS, PM_EXCHANGE_ABI } from '@/lib/contracts';
 
@@ -27,15 +27,20 @@ export function useOrderBookDepth(conditionId: string | undefined, depth: number
   const [data, setData] = useState<OrderBookData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const isInitialFetch = useRef(true);
 
   useEffect(() => {
     if (!conditionId || !publicClient) {
       setData(null);
+      isInitialFetch.current = true;
       return;
     }
 
     const fetchOrderBook = async () => {
-      setLoading(true);
+      // Only show loading spinner on initial fetch, not refreshes
+      if (isInitialFetch.current) {
+        setLoading(true);
+      }
       setError(null);
 
       try {
@@ -103,6 +108,8 @@ export function useOrderBookDepth(conditionId: string | undefined, depth: number
           yesPrice: Number(yesPrice) / 100, // Convert from bps to cents
           noPrice: Number(noPrice) / 100
         });
+        
+        isInitialFetch.current = false;
       } catch (err) {
         console.error('[OrderBook] Fetch error:', err);
         setError(err instanceof Error ? err.message : 'Failed to fetch orderbook');
@@ -113,7 +120,7 @@ export function useOrderBookDepth(conditionId: string | undefined, depth: number
 
     fetchOrderBook();
     
-    // Refresh every 10 seconds
+    // Refresh every 10 seconds silently (without loading state)
     const interval = setInterval(fetchOrderBook, 10000);
     return () => clearInterval(interval);
   }, [conditionId, depth, publicClient]);
